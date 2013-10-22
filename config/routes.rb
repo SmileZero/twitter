@@ -2,8 +2,14 @@ Twitter::Application.routes.draw do
   get "static_pages/home"
   match '/help', to: 'static_pages#help', via: :get
   get "static_pages/about"
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  resources :statuses, only: [:create, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
+  resources :relationships, only: [:create, :destroy]
   root  'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
