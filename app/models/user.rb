@@ -1,4 +1,7 @@
+require 'carrierwave/orm/activerecord'
+
 class User < ActiveRecord::Base
+  mount_uploader :avatar, AvatarUploader
   has_many :statuses, dependent: :destroy
 
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
