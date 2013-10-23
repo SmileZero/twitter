@@ -2,7 +2,7 @@ module SessionsHelper
 	def sign_in(user)
     remember_token = User.new_remember_token
     cookies[:remember_token] = { value:   remember_token,
-                                    expires: 1.hours.from_now.utc }
+                                    expires: 1.days.from_now.utc }
     user.update_attribute(:remember_token, User.encrypt(remember_token))
     self.current_user = user
   end
