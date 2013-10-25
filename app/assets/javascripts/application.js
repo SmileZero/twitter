@@ -13,5 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require underscore
+//= require backbone
+//= require iscroll
 //= unrequire turbolinks
-//= require_tree .
+//= unrequire_tree .

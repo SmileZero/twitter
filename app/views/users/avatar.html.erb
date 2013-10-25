@@ -1,0 +1,31 @@
+<%= form_for(@user, "/uploadAvatar") do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+    <div>
+      <%= f.label :avatar, "Avatar" %>
+      <div style="
+        display:block;
+        position: relative;
+        ">
+          <div id="preview" style="
+          overflow:hidden;
+          filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);
+          ">
+            <%=image_tag @user.avatar.to_s,id:"imgread",style:"width:100px;height:100px"%>
+          </div>
+            <%= f.file_field :avatar, id:"fileSel", class:"fileSel" ,accept:"image/*",style:"
+            display:block;
+            position:absolute;
+            top:0;
+            left:0;
+            width:100px;
+            height:100px !important;
+            cursor:pointer;
+            opacity:0;
+            filter:alpha(opacity: 0);
+            "%>
+      </div>
+    </div>
+  <div>
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+  </div>
+<% end %>

@@ -7,6 +7,7 @@ Twitter::Application.routes.draw do
       get :following, :followers
     end
   end
+
   resources :statuses, only: [:create, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
   resources :relationships, only: [:create, :destroy]
