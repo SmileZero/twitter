@@ -21,7 +21,7 @@ class StatusesController < ApplicationController
 private
 
   def status_params
-	 params.require(:status).permit(:content)
+	 params.require(:status).permit(:content,:in_reply_to)
   end
   def correct_user
     @status = current_user.statuses.find_by(id: params[:id])

@@ -3,7 +3,14 @@
   <span class="user">
     <%= link_to feed_item.user.name, feed_item.user %>
   </span>
-  <span class="content"><%= feed_item.content %></span>
+  <span class="content">
+    <% if feed_item.reply_to %>
+    <%= link_to "@#{feed_item.reply_to.user.name}","/users/#{feed_item.reply_to.user.id}"%>
+    <%= " #{feed_item.content}" %>
+    <% else %>
+      <%= "#{feed_item.content}" %>
+    <% end %>
+  </span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
   </span>
@@ -12,4 +19,47 @@
                                      data: { confirm: "You sure?" },
                                      title: feed_item.content %>
   <% end %>
+    <div class="accordion-group">
+      <div class="accordion-heading">
+      <% if !feed_item.reply_to %>
+        <a class="accordion-toggle" data-toggle="collapse" href="#collapse<%= feed_item.id %>">
+          Show Replies
+        </a>
+      </div>
+        <div id="collapse<%= feed_item.id %>" class="accordion-body collapse">
+          <div class="accordion-inner">
+            <%= render partial: 'shared/reply_item', collection: Status.replies(feed_item) %>
+            <section>
+              <%= render partial: 'shared/reply_form',locals: {reply_id: feed_item.id} %>
+            </section>
+          </div>
+        </div>
+      <% else %>
+        <a class="accordion-toggle" data-toggle="collapse" href="#collapse<%= feed_item.id %>">
+          Show Theme
+        </a>
+        </div>
+        <div id="collapse<%= feed_item.id %>" class="accordion-body collapse">
+            <div class="accordion-inner">
+              <section id="<%= feed_item.reply_to.id %>">
+                <%= link_to image_tag(feed_item.reply_to.user.avatar.to_s, class: "avatar"), feed_item.reply_to.user %>
+                <span class="user">
+                  <%= link_to feed_item.reply_to.user.name, feed_item.reply_to.user %>
+                </span>
+                <span class="content">
+                    <%= "#{feed_item.reply_to.content}" %>
+                </span>
+                <span class="timestamp">
+                  Posted <%= time_ago_in_words(feed_item.reply_to.created_at) %> ago.
+                </span>
+                <% if current_user?(feed_item.reply_to.user) %>
+                  <%= link_to "delete", feed_item.reply_to, method: :delete,
+                                                   data: { confirm: "You sure?" },
+                                                   title: feed_item.reply_to.content %>
+                <% end %>
+              </section>
+            </div>
+        </div>
+      <% end %>
+    </div>
 </li>

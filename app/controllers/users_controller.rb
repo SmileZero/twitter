@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
-    @statuses = @user.statuses.page(params[:page]).per(30)
+    @statuses = @user.statuses.page(params[:page]).per(15)
   end
 
   def new

@@ -1,5 +1,13 @@
 <li>
-  <span class="content"><%= status.content %></span>
+	
+  <span class="content">
+  	<% if status.reply_to %>
+  	<%= link_to "@#{status.reply_to.user.name}","/users/#{status.reply_to.user.id}"%>
+  	<%= " #{status.content}" %>
+  	<% else %>
+  		<%= "#{status.content}" %>
+  	<% end %>
+  </span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(status.created_at) %> ago.
   </span>
