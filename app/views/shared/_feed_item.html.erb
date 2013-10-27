@@ -23,7 +23,7 @@
       <div class="accordion-heading">
       <% if !feed_item.reply_to %>
         <a class="accordion-toggle" data-toggle="collapse" href="#collapse<%= feed_item.id %>">
-          Show Replies
+          <i class="icon-edit"></i>
         </a>
       </div>
         <div id="collapse<%= feed_item.id %>" class="accordion-body collapse">
@@ -36,10 +36,10 @@
         </div>
       <% else %>
         <a class="accordion-toggle" data-toggle="collapse" href="#collapse<%= feed_item.id %>">
-          Show Theme
+          <i class="icon-chevron-down"></i>
         </a>
         </div>
-        <div id="collapse<%= feed_item.id %>" class="accordion-body collapse">
+        <div id="collapse<%= feed_item.id %>" class="accordion-body collapse in">
             <div class="accordion-inner">
               <section id="<%= feed_item.reply_to.id %>">
                 <%= link_to image_tag(feed_item.reply_to.user.avatar.to_s, class: "avatar"), feed_item.reply_to.user %>
