@@ -1,0 +1,46 @@
+<div class="row">
+	<div class="span3 bs-docs-sidebar">
+	    <%= render 'settings_bar' %>
+	</div>
+	<div class="span9">
+		<h1>Upload Photo</h1>
+		<div>
+		<%= form_for(@user, url: settings_avatar_path) do |f| %>
+		  <%= render 'shared/error_messages', object: f.object %>
+		  	<%=f.hidden_field :id %>
+		  	<h2 style="font-size:20px;color:black; margin-bottom: 10px;">Preview</h2>
+
+		      <div style="
+		        display:block;
+		        position: relative;
+		        width:100px;
+		        height:100px;
+		        margin: 0 auto;
+		        ">
+		          <div id="preview" style="
+		          overflow:hidden;
+		          width:100px;
+		          height:100px;
+		          filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);
+		          ">
+		            <%=image_tag @user.avatar.to_s,id:"imgread",style:"width:100px;height:100px"%>
+		          </div>
+		            <%= f.file_field :avatar, id:"fileSel", class:"fileSel" ,accept:"image/*",style:"
+		            display:block;
+		            position:absolute;
+		            top:0;
+		            left:0;
+		            width:100px;
+		            height:100px !important;
+		            cursor:pointer;
+		            opacity:0;
+		            filter:alpha(opacity: 0);
+		            "%>
+		    </div>
+		  <div style="width:100%;">
+		      <%= f.submit "Upload", class: "btn btn-large btn-primary", style:"display:block;margin:20px auto;"%>
+		  </div>
+		<% end %>
+		</div>
+	</div>
+</div>

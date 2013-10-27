@@ -4,7 +4,12 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
 
   def index
-    @users = User.where("id != #{current_user.id}").page(params[:page]).per(15)
+    keywords = params[:search]
+    keywords ||= ""
+    #keywords = CGI::unescape(Base64.urlsafe_decode64(keywords))
+    @kw_ret = keywords
+    keywords = keywords.gsub(/(n['’]t\b)|\p{Punct}/, ' ').gsub(/\s/, "%")
+    @users = User.where("name LIKE ?","%#{keywords}%").where("id != #{current_user.id}").page(params[:page]).per(15)
   end
 
   def show

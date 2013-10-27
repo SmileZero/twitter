@@ -1,4 +1,8 @@
 Twitter::Application.routes.draw do
+  get "settings/info"
+  patch "settings/info", to: "settings#updateInfo"
+  get "settings/avatar"
+  patch "settings/avatar", to: "settings#updateAvatar"
   get "static_pages/home"
   match '/help', to: 'static_pages#help', via: :get
   get "static_pages/about"
@@ -7,6 +11,7 @@ Twitter::Application.routes.draw do
       get :following, :followers
     end
   end
+  
 
   resources :statuses, only: [:create, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
