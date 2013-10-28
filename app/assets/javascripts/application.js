@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.base64
 //= require bootstrap
 //= require underscore
 //= require backbone

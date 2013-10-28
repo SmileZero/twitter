@@ -22,8 +22,8 @@
     <div class="accordion-group">
       <div class="accordion-heading">
       <% if !feed_item.reply_to %>
-        <a class="accordion-toggle" data-toggle="collapse" href="#collapse<%= feed_item.id %>">
-          <i class="icon-edit"></i>
+        <a class="accordion-toggle" data-toggle="collapse" href="#collapse<%= feed_item.id %>" style="text-decoration:none" >
+          <i class="icon-edit"></i>  <%= pluralize(Status.replies(feed_item).count, "Reply") %>
         </a>
       </div>
         <div id="collapse<%= feed_item.id %>" class="accordion-body collapse">
