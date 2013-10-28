@@ -19,11 +19,15 @@
                                      data: { confirm: "You sure?" },
                                      title: feed_item.content %>
   <% end %>
+
+  <div class="timestamp">
+    <%=image_tag feed_item.image.to_s,class:"status-image" if feed_item.image%>
+  </div>
     <div class="accordion-group">
       <div class="accordion-heading">
       <% if !feed_item.reply_to %>
         <a class="accordion-toggle" data-toggle="collapse" href="#collapse<%= feed_item.id %>" style="text-decoration:none" >
-          <i class="icon-edit"></i>  <%= pluralize(Status.replies(feed_item).count, "Reply") %>
+          <i class="icon-comment"></i>  <%= pluralize(Status.replies(feed_item).count, "Reply") %>
         </a>
       </div>
         <div id="collapse<%= feed_item.id %>" class="accordion-body collapse">

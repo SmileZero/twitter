@@ -3,5 +3,35 @@
   <div class="field">
     <%= f.text_area :content, placeholder: "Tweet new status..." %>
   </div>
+  	<div class="image-upload" style="
+	    ">
+	      <div id="preview" style="
+        height: auto;
+        width: auto;
+	      filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);
+	      ">
+	      	<button type="button" class="dismiss" tabindex="-1">
+			  <i class="icon-remove icon-white"></i>
+			</button>
+	        <%=image_tag @status.image.to_s,id:"imgread",style:"
+        height: auto;
+        width: auto;"%>
+	      </div>
+	        
+	</div>
+   <button class="btn upload-btn" type="button" tabindex="-1">
+    <span class="font-icon fs28 ">A</span>
+    <%= f.file_field :image, id:"fileSel", class:"fileSel" ,accept:"image/*",style:"
+    display:block;
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100% !important;
+    cursor:pointer;
+    opacity:0;
+    filter:alpha(opacity: 0);
+    "%>
+  </button>
   <%= f.submit "Tweet", class: "btn btn-large btn-primary",style:"float:right;" %>
 <% end %>

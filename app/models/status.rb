@@ -1,4 +1,5 @@
 class Status < ActiveRecord::Base
+	mount_uploader :image, ImageUploader
 	belongs_to :user
 	default_scope -> { order('created_at DESC') }
 	validates_presence_of :user_id

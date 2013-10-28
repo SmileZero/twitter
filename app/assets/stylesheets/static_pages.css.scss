@@ -1,3 +1,33 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.upload-btn{
+    position: relative;
+}
+.status-image{
+	display:block;
+	margin:10px auto 10px auto;
+	height: auto;
+	width: auto;
+	max-width: 100%;
+	max-height: 200px;
+}
+.image-upload{
+	display: none;
+    position: relative;
+    margin: 0 auto 10px auto;
+}
+.dismiss{
+	display: none;
+	position: absolute;
+	margin: 0;
+	top: 0;
+	right: 0;
+	z-index: 10;
+	border: none;
+	background-color: #222;
+	float: right;
+	filter: alpha(opacity=50);
+	opacity: .50;
+	border-radius: 0 0 0 2px;
+}
