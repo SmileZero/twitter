@@ -20,13 +20,13 @@
                                      title: feed_item.content %>
   <% end %>
 
-  <div class="timestamp">
+  <div class="image-container" id="image-<%= feed_item.id %>">
     <%=image_tag feed_item.image.to_s,class:"status-image" if feed_item.image%>
   </div>
     <div class="accordion-group">
       <div class="accordion-heading">
       <% if !feed_item.reply_to %>
-        <a class="accordion-toggle" data-toggle="collapse" href="#collapse<%= feed_item.id %>" style="text-decoration:none" >
+        <a class="accordion-toggle" data-toggle="collapse" data-id="<%= feed_item.id %>" href="#collapse<%= feed_item.id %>" style="text-decoration:none" >
           <i class="icon-comment"></i>  <%= pluralize(Status.replies(feed_item).count, "Reply") %>
         </a>
       </div>
@@ -39,7 +39,7 @@
           </div>
         </div>
       <% else %>
-        <a class="accordion-toggle" data-toggle="collapse" href="#collapse<%= feed_item.id %>">
+        <a class="accordion-toggle" data-toggle="collapse" data-id="<%= feed_item.id %>" href="#collapse<%= feed_item.id %>">
           <i class="icon-chevron-down"></i>
         </a>
         </div>

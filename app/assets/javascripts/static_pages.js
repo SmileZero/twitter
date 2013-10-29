@@ -5,6 +5,19 @@ $(function() {
 		$('.fileSel').val("");
 		$("#imgread").attr("src", "")
 	})
+	
+	$(".accordion-toggle").each(function(){
+		var image_container = $("#image-"+$(this).data("id"))
+		if (image_container.children().first().attr("src")!=""){
+			$(this).children().first().attr("class","icon-eye-open");
+			$(this).click(function(e){
+					 	if(image_container.is(":hidden"))
+							image_container.fadeIn("slow");
+						else
+							image_container.hide();
+			})
+		}
+	})
 
 	function clacImgZoomParam( maxWidth, maxHeight, width, height ){  
         var param = {top:0, left:0, width:width, height:height};  
