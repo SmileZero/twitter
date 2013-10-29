@@ -9,12 +9,12 @@ class UsersController < ApplicationController
     #keywords = CGI::unescape(Base64.urlsafe_decode64(keywords))
     @kw_ret = keywords
     keywords = keywords.gsub(/(n['’]t\b)|\p{Punct}/, ' ').gsub(/\s/, "%")
-    @users = User.where("name LIKE ?","%#{keywords}%").where("id != #{current_user.id}").page(params[:page]).per(15)
+    @users = User.where("name LIKE ?","%#{keywords}%").where("id != #{current_user.id}").page(params[:page]).per(10)
   end
 
   def show
   	@user = User.find(params[:id])
-    @statuses = @user.statuses.page(params[:page]).per(15)
+    @statuses = @user.statuses.page(params[:page]).per(10)
   end
 
   def new
@@ -49,14 +49,14 @@ class UsersController < ApplicationController
   def following
     @title = "Following"
     @user = User.find(params[:id])
-    @users = @user.followed_users.page(params[:page]).per(15)
+    @users = @user.followed_users.page(params[:page]).per(10)
     render 'show_follow'
   end
 
   def followers
     @title = "Followers"
     @user = User.find(params[:id])
-    @users = @user.followers.page(params[:page]).per(15)
+    @users = @user.followers.page(params[:page]).per(10)
     render 'show_follow'
   end
 
