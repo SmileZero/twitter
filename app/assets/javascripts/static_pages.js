@@ -9,7 +9,7 @@ $(function() {
 	$(".accordion-toggle").each(function(){
 		var image_container = $("#image-"+$(this).data("id"))
 		if (image_container.children().first().attr("src")!=""){
-			$(this).children().first().attr("class","icon-eye-open");
+			$(this).children().first().attr("class","icon-picture");
 			$(this).click(function(e){
 					 	if(image_container.is(":hidden"))
 							image_container.fadeIn("slow");

@@ -16,4 +16,7 @@
                                      data: { confirm: "Are you sure?" },
                                      title: status.content %>
   <% end %>
+  <div class="self-image-container" id="self-image-<%= status.id %>">
+    <%=image_tag status.image.to_s,class:"status-image" if status.image%>
+  </div>
 </li>
