@@ -16,6 +16,7 @@
       <div id = "tweet-feed" data-maxpage = "<%=@maxpage%>" data-currentcount = 5>
         <%= render 'shared/feed' %>
       </div>
+        <div id= "loading" ><%=image_tag "loader.gif",class:"loader"%></div>
   </div>
   <!-- Modal -->
   <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
