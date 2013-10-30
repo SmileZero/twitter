@@ -1,30 +1,35 @@
 $(function() {
-	$(".image-pop").each(function(){
-		$(this).click(function(){
-			if($(this).children().first().attr("src")!="")
-					$(".img-show").attr("src",$(this).children().first().attr("src"))
-					$("#myModalLabel").html($(this).data("content"))
-		})
-	})
+
 	$(".dismiss").click(function(){
 		$(".image-upload").hide();
 		$(".dismiss").hide();
 		$('.fileSel').val("");
 		$("#imgread").attr("src", "")
 	})
-	
-	$(".accordion-toggle").each(function(){
-		var image_container = $("#image-"+$(this).data("id"))
-		if (image_container.children().first().children().first().attr("src")!=""){
-			$(this).children().first().attr("class","icon-picture");
-			$(this).click(function(e){
-					 	if(image_container.is(":hidden"))
-							image_container.fadeIn("slow");
-						else
-							image_container.hide();
+
+	function refreshIconAndImage(){
+		$(".accordion-toggle").each(function(){
+			var image_container = $("#image-"+$(this).data("id"))
+			if (image_container.children().first().children().first().attr("src")!=""){
+				$(this).children().first().attr("class","icon-picture");
+				$(this).unbind('click').bind("click",function(e){
+						 	if(image_container.is(":hidden"))
+								image_container.fadeIn();
+							else
+								image_container.hide();
+				})
+			}
+		})
+		$(".image-pop").each(function(){
+			$(this).unbind('click').bind("click",function(){
+				if($(this).children().first().attr("src")!="")
+						$(".img-show").attr("src",$(this).children().first().attr("src"))
+						$("#myModalLabel").html($(this).data("content"))
 			})
-		}
-	})
+		})
+	}
+
+	refreshIconAndImage();
 
 	function clacImgZoomParam( maxWidth, maxHeight, width, height ){  
         var param = {top:0, left:0, width:width, height:height};  
@@ -92,7 +97,7 @@ $(function() {
 		}
 	})
 	var stop=true;   
-	var per_page = 5;
+	var per_page = 6;
   function loadData(){   
       totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop());   
         
@@ -111,10 +116,11 @@ $(function() {
 							})
 						  .done(function() {
 						    $("#loading").hide();
-								$("#tweet-feed").append($($("#page-cache").html()).hide().fadeIn(1000));
+								$("#tweet-feed > .statuses").append($($("#page-cache > .statuses").html()).hide().fadeIn(1000));
 								var end = parseInt($('#tweet-feed').data("currentcount"))+per_page;
 			          end = (end <= maxpage )? end:maxpage;
 						    $('#tweet-feed').data("currentcount", end)
+						    refreshIconAndImage()
 						    stop=true; 
 						  })
 						  .fail(function() {

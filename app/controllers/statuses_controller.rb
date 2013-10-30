@@ -5,7 +5,7 @@ class StatusesController < ApplicationController
   def index
     @maxpage = current_user.feed.count
     sub = @maxpage - params[:maxpage].to_i
-    @feed_items = current_user.feed.offset(params[:begin].to_i+sub).limit(5)
+    @feed_items = current_user.feed.offset(params[:begin].to_i+sub).limit(6)
     @maxpage = current_user.feed.count
     @status = Status.new
     respond_to do |format|
