@@ -13,7 +13,7 @@ Twitter::Application.routes.draw do
   end
   
 
-  resources :statuses, only: [:create, :destroy]
+  resources :statuses, only: [:index, :create, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
   resources :relationships, only: [:create, :destroy]
   root  'static_pages#home'

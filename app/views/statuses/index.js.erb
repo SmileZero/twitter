@@ -1,0 +1,18 @@
+if($("#tweet-feed").data("maxpage")!= "<%=@maxpage%>"){
+	//console.log($("#tweet-feed").data("maxpage")+":<%=@maxpage%>")
+	var newtweet_count = <%=@maxpage%> - parseInt($("#tweet-feed").data("maxpage"))
+	$("#tweet-feed").data("maxpage","<%=@maxpage%>")
+	$("#tweet-feed").data("currentcount",parseInt($("#tweet-feed").data("currentcount"))+newtweet_count)
+	$("#page-cache").html("<%=j render 'shared/feed' %>")
+	//new tweet remind
+}
+else{
+	console.log("ajax")
+	$("#page-cache").html("<%=j render 'shared/feed' %>")
+}
+
+
+// $.get( "/statuses" {page:5})
+//   .done(function() {
+//     alert( "second success" );
+//   })

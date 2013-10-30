@@ -12,8 +12,26 @@
       </section>
     </aside>
   <div class="span8">
-      <h3>Status Feed</h3>
-      <%= render 'shared/feed' %>
+      <h3>Tweets</h3>
+      <div id = "tweet-feed" data-maxpage = "<%=@maxpage%>" data-currentcount = 5>
+        <%= render 'shared/feed' %>
+      </div>
+  </div>
+  <!-- Modal -->
+  <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">Show Image</h3>
+    </div>
+    <div class="modal-body">
+      <img class="img-show">
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    </div>
+  </div>
+
+  <div id = "page-cache">
   </div>
   </div>
 <% else %>

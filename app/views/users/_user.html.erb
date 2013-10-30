@@ -1,4 +1,6 @@
 <li>
-  <%= image_tag user.avatar.to_s, class: "avatar" %>
-  <%= link_to user.name, user %>
+  <%= link_to user do %>
+  	<%= image_tag user.avatar.to_s, class: "avatar" %>
+  	<%= label_tag user.name,user.name %>
+  <% end %>
 </li>

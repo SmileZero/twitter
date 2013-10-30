@@ -91,5 +91,42 @@ $(function() {
 			$(".dismiss").show();
 		}
 	})
+	var stop=true;   
+	var per_page = 5;
+  function loadData(){   
+      totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop());   
+        
+      if ($(document).height() <= totalheight) {  
+        var data = {}; 
+
+        var currentcount = parseInt($('#tweet-feed').data("currentcount"));  
+        var maxpage = parseInt($('#tweet-feed').data("maxpage"));
+        if(currentcount <  maxpage && stop==true){
+          stop=false;
+        	data.maxpage = maxpage;
+          data.begin = currentcount;
+            $.get( "/statuses",data,
+					   function() {
+							  $("#loading").fadeIn();
+							})
+						  .done(function() {
+						    $("#loading").fadeOut();
+								$("#tweet-feed").append($($("#page-cache").html()).hide().fadeIn(1000));
+								var end = parseInt($('#tweet-feed').data("currentcount"))+per_page;
+			          end = (end <= maxpage )? end:maxpage;
+						    $('#tweet-feed').data("currentcount", end)
+						    stop=true; 
+						  })
+						  .fail(function() {
+						    alert( "error" );
+						    stop=true;
+						  })
+				}
+      }   
+    }   
+    $(window).scroll( function() {   
+        loadData();  
+    });   
+
 
 })

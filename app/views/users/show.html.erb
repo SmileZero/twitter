@@ -7,11 +7,14 @@
         <%= @user.name %>
       </h1>
     </section>
+    <section>
+        <%= render 'shared/stats' %>
+    </section>
   </aside>
   <div class="span8">
     <%= render 'follow_form' if signed_in? %>
     <% if @user.statuses.any? %>
-      <h3>Status (<%= @user.statuses.count %>)</h3>
+      <h3>Tweets (<%= @user.statuses.count %>)</h3>
       <ol class="statuses">
         <%= render @statuses %>
       </ol>
