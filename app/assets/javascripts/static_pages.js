@@ -1,4 +1,11 @@
 $(function() {
+	$(".image-pop").each(function(){
+		$(this).click(function(){
+			if($(this).children().first().attr("src")!="")
+					$(".img-show").attr("src",$(this).children().first().attr("src"))
+					$("#myModalLabel").html($(this).data("content"))
+		})
+	})
 	$(".dismiss").click(function(){
 		$(".image-upload").hide();
 		$(".dismiss").hide();
@@ -8,7 +15,7 @@ $(function() {
 	
 	$(".accordion-toggle").each(function(){
 		var image_container = $("#image-"+$(this).data("id"))
-		if (image_container.children().first().attr("src")!=""){
+		if (image_container.children().first().children().first().attr("src")!=""){
 			$(this).children().first().attr("class","icon-picture");
 			$(this).click(function(e){
 					 	if(image_container.is(":hidden"))

@@ -8,7 +8,7 @@
     <%= link_to "@#{feed_item.reply_to.user.name}","/users/#{feed_item.reply_to.user.id}"%>
     <%= " #{feed_item.content}" %>
     <% else %>
-      <%= "#{feed_item.content}" %>
+      <%= feed_item.content %>
     <% end %>
   </span>
   <span class="timestamp">
@@ -21,7 +21,9 @@
   <% end %>
 
   <div class="image-container" id="image-<%= feed_item.id %>">
-    <%=image_tag feed_item.image.to_s,class:"status-image" if feed_item.image%>
+    <a href="#myModal" role="button" class="image-pop" data-toggle="modal" data-content= "<%= feed_item.content %>" >
+      <%=image_tag feed_item.image.to_s,class:"status-image" if feed_item.image%>
+    </a>
   </div>
     <div class="accordion-group">
       <div class="accordion-heading">

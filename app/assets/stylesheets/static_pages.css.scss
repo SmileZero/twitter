@@ -35,3 +35,19 @@
 .image-container{
 	display:none;
 }
+#myModal {
+	width: 50%;
+	margin-left: -25%;
+	max-height: 80%;
+}
+.img-show{
+	display: block;
+	margin: 0 auto;
+	max-width: 100%;
+	max-height: 80%;
+}
+
+.modal-body {
+	max-width: 100%;
+	max-height: 80%;
+}
