@@ -42,8 +42,11 @@ gem 'kaminari'
 
 gem 'carrierwave'
 
+
+gem 'capistrano'
+
 # Use unicorn as the app server
-# gem 'unicorn'
+ gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
