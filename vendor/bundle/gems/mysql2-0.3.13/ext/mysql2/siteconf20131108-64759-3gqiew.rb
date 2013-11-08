@@ -1,5 +1,5 @@
 require 'rbconfig'
-dest_path = "./.gem.20131017-19387-10s7n32"
+dest_path = "./.gem.20131108-64759-9uugoa"
 RbConfig::MAKEFILE_CONFIG['sitearchdir'] = dest_path
 RbConfig::CONFIG['sitearchdir'] = dest_path
 RbConfig::MAKEFILE_CONFIG['sitelibdir'] = dest_path
